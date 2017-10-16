@@ -32,7 +32,7 @@ RUN yum install -y\
 				wget \
 				curl && \
 tar -zxvf tengine.tar.gz && \
-cd tengine-${NGINX_VERSION} && \
+cd ${NGINX_VERSION} && \
 make && \
 make install &&\
 yum clean all -y
