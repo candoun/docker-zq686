@@ -40,4 +40,5 @@ cd ${NGINX_VERSION} && \
 	--with-pcre-jit && \
 make && make install && \
 yum clean all -y && \
-rm -rf tengine-tengine* 
+rm -rf /var/cache/yum tengine*
+
