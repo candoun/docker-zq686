@@ -4,6 +4,7 @@ WORKDIR /usr/src/app
 ENV NGINX_VERSION tengine-2.1.1
 ADD http://tengine.taobao.org/download/${NGINX_VERSION}.tar.gz   tengine.tar.gz
 RUN yum install -y\
+ gcc gcc-c++ autoconf automake make   \
  libpcre3-dev \
  zlib1g-dev \
  libgeoip-dev \
