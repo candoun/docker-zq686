@@ -31,7 +31,7 @@ RUN yum install -y\
 				libperl-dev \
 				wget \
 				curl && \
-tar -zxvf tengine.tar.gz && \
+tar -zxvf tengine.tar.gz > /dev/null && \
 cd ${NGINX_VERSION} && \
 make && \
 make install &&\
