@@ -34,7 +34,9 @@ RUN yum install -y\
  curl && \
 tar -zxvf tengine.tar.gz > /dev/null && \
 cd ${NGINX_VERSION} && \
-./configure && \
+./configure \
+	--with-pcre \
+	--with-pcre-jit && \
 make && make install && \
 yum clean all -y && \
 rm -rf tengine-tengine* 
