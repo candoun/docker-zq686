@@ -24,7 +24,7 @@ RUN set -ex;\
 	\) -exec rm -rf '{}' +; \
     rm requirements.txt
 
-#COPY Django-1.8.4.tar.gz ./
-#RUN tar -zxvf Django-1.8.4.tar.gz && cd Django-1.8.4 && pwd && python setup.py install
+COPY Django-1.8.4.tar.gz ./
+RUN tar -zxvf Django-1.8.4.tar.gz && cd Django-1.8.4 && pwd && python setup.py install
 
 CMD ["/bin/bash"]
