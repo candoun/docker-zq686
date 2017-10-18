@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 # freetds-dev just for pip install pymssql==2.1.3
 
 RUN apt-get update && apt-get install -y \
+		gcc gcc-c++ autoconf automake make \
 		vim \
 		telnet \
 		freetds-dev \
