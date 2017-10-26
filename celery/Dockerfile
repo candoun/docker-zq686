@@ -2,6 +2,8 @@ FROM python:2.7
 RUN groupadd user && useradd --create-home --home-dir /home/user -g user user
 WORKDIR /home/user
 
+RUN apt-get update && apt-get install -y \
+		vim 
 RUN pip install redis
 
 ENV CELERY_VERSION 3.1.19
