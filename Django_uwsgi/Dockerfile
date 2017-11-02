@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends && rm -rf /var/lib/apt/lists/*
 	
 # RUN pip install --no-cache-dir cx_Oracle	
+ENV CELERY_VERSION 3.1.19
+
+RUN pip install celery=="$CELERY_VERSION"
 
 COPY requirements.txt ./
 RUN pip install --upgrade --no-cache-dir -r requirements.txt
