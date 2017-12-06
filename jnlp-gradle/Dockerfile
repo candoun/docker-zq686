@@ -10,8 +10,7 @@ LABEL Description="This is a base image, which provides the Jenkins agent execut
 ARG VERSION=3.14
 ARG AGENT_WORKDIR=/home/jenkins/agent
 
-RUN apk add --update --no-cache curl bash git openssh-client openssl \
-    .build-deps \
+RUN apk add --update --no-cache --virtual .build-deps curl bash git openssh-client openssl \
     ca-certificates \
     unzip \
   && curl --create-dirs -sSLo /usr/share/jenkins/slave.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${VERSION}/remoting-${VERSION}.jar \
