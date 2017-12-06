@@ -7,7 +7,7 @@ LABEL maintainer="zzuwhj@126.com"
 
 # Docker Build Arguments
 ARG RESTY_VERSION="1.13.6.1"
-ARG RESTY_OPENSSL_VERSION="1.0.2k"
+ARG RESTY_OPENSSL_VERSION="1.1.0g"
 ARG RESTY_PCRE_VERSION="8.41"
 ARG RESTY_J="1"
 ARG RESTY_ZLIB_VERSION="1.2.11"
@@ -45,7 +45,7 @@ ARG RESTY_CONFIG_OPTIONS_MORE=""
 
 # These are not intended to be user-specified
 #ARG _RESTY_CONFIG_DEPS="--with-openssl=/tmp/openssl-${RESTY_OPENSSL_VERSION} --with-pcre=/tmp/pcre-${RESTY_PCRE_VERSION}"
-ARG _RESTY_CONFIG_DEPS="--with-pcre=/tmp/pcre-${RESTY_PCRE_VERSION} --with-zlib=/tmp/zlib-${RESTY_ZLIB_VERSION}"
+ARG _RESTY_CONFIG_DEPS="--with-openssl=/tmp/openssl-${RESTY_OPENSSL_VERSION} --with-pcre=/tmp/pcre-${RESTY_PCRE_VERSION} --with-zlib=/tmp/zlib-${RESTY_ZLIB_VERSION}"
 
 
 # 1) Install apk dependencies
