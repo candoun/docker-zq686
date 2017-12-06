@@ -71,8 +71,8 @@ RUN apk add --no-cache --virtual .build-deps \
         libxslt \
         zlib \
     && cd /tmp \
-    #&& curl -fSL https://www.openssl.org/source/openssl-${RESTY_OPENSSL_VERSION}.tar.gz -o openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
-    #&& tar xzf openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
+    && curl -fSL https://www.openssl.org/source/openssl-${RESTY_OPENSSL_VERSION}.tar.gz -o openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
+    && tar xzf openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
     && curl -fSL https://ftp.pcre.org/pub/pcre/pcre-${RESTY_PCRE_VERSION}.tar.gz -o pcre-${RESTY_PCRE_VERSION}.tar.gz \
     && tar xzf pcre-${RESTY_PCRE_VERSION}.tar.gz \
 	&& curl -fSL http://www.zlib.net/zlib-${RESTY_ZLIB_VERSION}.tar.gz -o zlib-${RESTY_ZLIB_VERSION}.tar.gz \
@@ -85,8 +85,8 @@ RUN apk add --no-cache --virtual .build-deps \
     && make -j${RESTY_J} install \
     && cd /tmp \
     && rm -rf \
-        #openssl-${RESTY_OPENSSL_VERSION} \
-        #openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
+        openssl-${RESTY_OPENSSL_VERSION} \
+        openssl-${RESTY_OPENSSL_VERSION}.tar.gz \
         openresty-${RESTY_VERSION}.tar.gz openresty-${RESTY_VERSION} \
         pcre-${RESTY_PCRE_VERSION}.tar.gz pcre-${RESTY_PCRE_VERSION} \
 		zlib-${RESTY_ZLIB_VERSION}.tar.gz zlib-${RESTY_ZLIB_VERSION}\
