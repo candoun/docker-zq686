@@ -1,50 +1,43 @@
-FROM jenkinsci/jnlp-slave
+FROM openjdk:8-jdk-alpine
+MAINTAINER Nicolas De Loof <nicolas.deloof@gmail.com>
+
+ENV HOME /home/jenkins
+RUN addgroup -S -g 10000 jenkins
+RUN adduser -S -u 10000 -h $HOME -G jenkins jenkins
+LABEL Description="This is a base image, which provides the Jenkins agent executable (slave.jar)" Vendor="Jenkins project" Version="3.14"
+
+ARG VERSION=3.14
+ARG AGENT_WORKDIR=/home/jenkins/agent
+
+RUN apk add --update --no-cache curl bash git openssh-client openssl tar\
+  && curl --create-dirs -sSLo /usr/share/jenkins/slave.jar https://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/${VERSION}/remoting-${VERSION}.jar \
+  && chmod 755 /usr/share/jenkins \
+  && chmod 644 /usr/share/jenkins/slave.jar \
+  && apk del curl
+# USER jenkins
+ENV AGENT_WORKDIR=${AGENT_WORKDIR}
+RUN mkdir /home/jenkins/.jenkins && mkdir -p ${AGENT_WORKDIR}
+
+VOLUME /home/jenkins/.jenkins
+VOLUME ${AGENT_WORKDIR}
+WORKDIR /home/jenkins
 
 
 
 
-####
 
-ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.3.1
+ARG MAVEN_VERSION=3.5.2
+ARG USER_HOME_DIR=$HOME
+ARG SHA=707b1f6e390a65bde4af4cdaf2a24d45fc19a6ded00fff02e91626e3e42ceaff
+ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
-ARG GRADLE_DOWNLOAD_SHA256=15ebe098ce0392a2d06d252bff24143cc88c4e963346582c8d88814758d93ac7
-RUN set -o errexit -o nounset \
-	&& echo "Installing build dependencies" \
-	&& apk add --no-cache --virtual .build-deps \
-		ca-certificates \
-		openssl \
-		unzip \
-	\
-	&& echo "Downloading Gradle" \
-	&& wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
-	\
-	&& echo "Checking download hash" \
-	&& echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
-	\
-	&& echo "Installing Gradle" \
-	&& unzip gradle.zip \
-	&& rm gradle.zip \
-	&& mkdir /opt \
-	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
-	&& ln -s "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle \
-	\
-	&& apk del .build-deps \
-	\
-	&& echo "Adding gradle user and group" \
-	&& addgroup -S -g 1000 gradle \
-	&& adduser -D -S -G gradle -u 1000 -s /bin/ash gradle \
-	&& mkdir /home/gradle/.gradle \
-	&& chown -R gradle:gradle /home/gradle \
-	\
-	&& echo "Symlinking root Gradle cache to gradle Gradle cache" \
-	&& ln -s /home/gradle/.gradle /root/.gradle
+RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
+  && curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+  && echo "${SHA}  /tmp/apache-maven.tar.gz" | sha256sum -c - \
+  && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
+  && rm -f /tmp/apache-maven.tar.gz \
+  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-# Create Gradle volume
-USER gradle
-VOLUME "/home/gradle/.gradle"
-WORKDIR /home/gradle
-
-RUN set -o errexit -o nounset \
-	&& echo "Testing Gradle installation" \
-	&& gradle --version
+ENV MAVEN_HOME /usr/share/maven
+ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+USER jenkins
