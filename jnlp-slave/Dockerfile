@@ -1,5 +1,6 @@
 FROM openjdk:8-jdk-alpine
-MAINTAINER Nicolas De Loof <nicolas.deloof@gmail.com>
+# harbor.paic.com.cn/jenkins/maven/maven:3.5.2-openjdk-8-alpine
+MAINTAINER jenkins/maven/3.5.2-openjdk-8-alpine
 
 ENV HOME /home/jenkins
 RUN addgroup -S -g 10000 jenkins
@@ -40,4 +41,6 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+COPY settings.xml /usr/share/maven/conf
+
 USER jenkins
