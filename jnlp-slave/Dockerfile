@@ -1,5 +1,5 @@
 FROM openjdk:8-jdk-alpine
-# harbor.paic.com.cn/jenkins/maven/maven:3.5.2-openjdk-8-alpine
+
 MAINTAINER jenkins/maven/3.5.2-openjdk-8-alpine
 
 ENV HOME /home/jenkins
