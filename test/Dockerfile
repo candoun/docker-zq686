@@ -12,11 +12,7 @@ RUN apk add --no-cache \
 		tar \
 		unzip \
     && cd /tmp 
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl  
-RUN ls -l /tmp 
-#RUN cat *.txt
+RUN curl -fSL  https://storage.googleapis.com/kubernetes-release/release/v1.8.5/bin/linux/amd64/kubectl -o kubectl1.8.5
+RUN curl -fSL https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl  -o kubectl1.8.0
 
-RUN aa= $(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) 
-RUN echo $aa
-
+RUN curl -fSL  https://storage.googleapis.com/kubernetes-release/release/stable.txt -o aa.txt
