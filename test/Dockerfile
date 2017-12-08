@@ -8,7 +8,7 @@ LABEL maintainer="zzuwhj@126.com"
 
 RUN apk add --no-cache \
         curl \
-        wget \
+        #wget \
 		tar \
 		unzip \
     && cd /tmp \
