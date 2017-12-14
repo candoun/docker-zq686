@@ -45,9 +45,8 @@ RUN set -o errexit -o nounset \
     && rm gradle.zip \
     && mkdir /opt \
     && mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
-    && ln -s "${GRADLE_HOME}/gradle-${GRADLE_VERSION}/bin/gradle" /usr/bin/gradle \
-    \
-    && apk del .build-deps 
+    && ln -s "${GRADLE_HOME}/gradle-${GRADLE_VERSION}/bin/gradle" /usr/bin/gradle 
+
     
 RUN set -o errexit -o nounset \
 	&& echo "Testing Gradle installation" \
