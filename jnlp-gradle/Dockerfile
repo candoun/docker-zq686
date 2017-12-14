@@ -37,7 +37,7 @@ RUN set -o errexit -o nounset \
     && echo "Installing build dependencies" \
     \
     && echo "Downloading Gradle" \
-    && wget -O gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+    && wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
     \
     && echo "Checking download hash" \
     && echo "${GRADLE_DOWNLOAD_SHA256} *gradle.zip" | sha256sum -c - \
@@ -51,4 +51,6 @@ RUN set -o errexit -o nounset \
     \
     && apk del .build-deps \
     \
-
+RUN set -o errexit -o nounset \
+	&& echo "Testing Gradle installation" \
+	&& gradle --version
