@@ -4,7 +4,8 @@ MAINTAINER ZZUWHJ
 
 WORKDIR /usr/src/app
 
-apk add --no-cache py-pip postgresql-dev gcc g++ mariadb-dev
+RUN apk add --no-cache --virtual .build-deps \
+    py-pip postgresql-dev gcc g++ mariadb-dev
 
 
 COPY requirements.txt ./
