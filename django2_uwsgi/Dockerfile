@@ -14,8 +14,8 @@ COPY kubectl1.7.0 \
 
 RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
-		freetds-dev freetds #for msssql \
-	&& pip install Cython #for msssql \
+		freetds-dev freetds  \
+	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
 		find /usr/local -depth \
