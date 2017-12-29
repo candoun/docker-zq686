@@ -5,7 +5,7 @@ MAINTAINER ZZUWHJ
 WORKDIR /usr/src/app
 
 COPY requirements.txt ./
-RUN pip install --upgrade --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 RUN set -ex;\
     find /usr/local -depth \
 	\( \
