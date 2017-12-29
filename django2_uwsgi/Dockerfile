@@ -4,10 +4,6 @@ MAINTAINER ZZUWHJ
 
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache --virtual .build-deps \
-        mysql-client\
-	&& ln -s /usr/local/mysql/bin/mysql_config /usr/local/bin/mysql_config
-		
 COPY requirements.txt ./
 RUN pip install --upgrade --no-cache-dir -r requirements.txt
 RUN set -ex;\
