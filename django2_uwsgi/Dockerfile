@@ -5,7 +5,8 @@ MAINTAINER ZZUWHJ
 WORKDIR /usr/src/app
 
 RUN apk add --no-cache --virtual .build-deps \
-    py-pip postgresql-dev gcc g++ mariadb-dev
+    py-pip postgresql-dev gcc g++ mariadb-dev \
+	freetds-dev freetds #for msssql
 
 
 COPY requirements.txt ./
