@@ -11,11 +11,14 @@ COPY kubectl1.7.0 \
 	 kubectl1.8.0 \
 	 kubectl1.8.5 \
 	 /usr/local/bin/
-
-RUN apk add --no-cache --virtual .build-deps \
+RUN apk add tzdata \
+        vim \
+        telnet \
+        curl \
+        wget \
+    && apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
 		freetds-dev freetds  \
-		tzdata \
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
