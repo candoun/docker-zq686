@@ -4,18 +4,26 @@ MAINTAINER ZZUWHJ
 
 WORKDIR /usr/src/app
 
-RUN apk add --no-cache --virtual .build-deps \
-    py-pip postgresql-dev gcc g++ mariadb-dev \
-	freetds-dev freetds #for msssql
-
-
 COPY requirements.txt ./
-RUN pip install -r requirements.txt
-RUN set -ex;\
-    find /usr/local -depth \
-	\( \
-	    \( -type d -a \( -name test -o -name tests \) \) \
-		-o \
-	    \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
-	\) -exec rm -rf '{}' +; \
-	rm requirements.txt
+COPY kubectl1.7.0 \
+	 kubectl1.8.0 \
+	 kubectl1.8.5 \
+	 /usr/local/bin/kubectl1.7.0 
+
+RUN apk add --no-cache --virtual .build-deps \
+		py-pip postgresql-dev gcc g++ mariadb-dev \
+		freetds-dev freetds #for msssql \
+	&& pip install Cython #for msssql \
+	&& pip install -r requirements.txt \
+	&& set -ex;\
+		find /usr/local -depth \
+		\( \
+			\( -type d -a \( -name test -o -name tests \) \) \
+			-o \
+			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
+		\) -exec rm -rf '{}' +; \
+		rm requirements.txt \
+	&& apk del .build-deps \
+	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl
+	&& /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+	&& echo 'Asia/Shanghai' >/etc/timezone 
