@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt \
 	 Dockerfile \
-	  /
+	 ./
 COPY kubectl1.7.0 \
 	 kubectl1.8.0 \
 	 kubectl1.8.5 \
