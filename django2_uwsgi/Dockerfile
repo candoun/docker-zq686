@@ -16,7 +16,8 @@ RUN apk add tzdata \
         telnet \
         curl \
         wget \
-    && apk add --no-cache --virtual .build-deps \
+    && ls /usr/share/zoneinfo/ \
+    #&& apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
 		freetds-dev freetds  \
 	&& pip install Cython  \
@@ -30,5 +31,6 @@ RUN apk add tzdata \
 		\) -exec rm -rf '{}' +; \
 		rm requirements.txt \
 	&& apk del .build-deps \
-	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl 
+	&& chmod 777 /usr/local/bin/kubectl* 
+    && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl 
 	#&& cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime
