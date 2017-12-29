@@ -4,6 +4,9 @@ MAINTAINER ZZUWHJ
 
 WORKDIR /usr/src/app
 
+apk add --no-cache py-pip postgresql-dev gcc g++ mariadb-dev
+
+
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 RUN set -ex;\
