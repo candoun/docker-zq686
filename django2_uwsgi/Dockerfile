@@ -4,7 +4,9 @@ MAINTAINER ZZUWHJ
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
+COPY requirements.txt \
+	 Dockerfile \
+	 ./
 COPY kubectl1.7.0 \
 	 kubectl1.8.0 \
 	 kubectl1.8.5 \
@@ -24,6 +26,6 @@ RUN apk add --no-cache --virtual .build-deps \
 		\) -exec rm -rf '{}' +; \
 		rm requirements.txt \
 	&& apk del .build-deps \
-	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl
+	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl \
 	&& /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone 
