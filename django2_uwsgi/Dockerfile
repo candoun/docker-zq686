@@ -15,6 +15,7 @@ COPY kubectl1.7.0 \
 RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
 		freetds-dev freetds  \
+		tzdata \
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
@@ -27,5 +28,4 @@ RUN apk add --no-cache --virtual .build-deps \
 		rm requirements.txt \
 	&& apk del .build-deps \
 	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl \
-	&& /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-	&& echo 'Asia/Shanghai' >/etc/timezone 
+	&& cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime
