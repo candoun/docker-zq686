@@ -12,8 +12,7 @@ COPY kubectl1.7.0 \
 	 kubectl1.8.5 \
 	 /usr/local/bin/
 
-RUN apk add tzdata \
-	&& apk add --no-cache --virtual .build-deps \
+RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
 		freetds-dev freetds  \
 	&& pip install Cython  \
