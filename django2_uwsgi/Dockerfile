@@ -2,13 +2,14 @@ FROM python:3.6.4-alpine3.6
 
 MAINTAINER ZZUWHJ
 
+
+WORKDIR /usr/src/app
 RUN apk add --no-cache \
     curl \
 	wget \
-	vim
-RUN apk update && apk add tzdata tzdata 
-WORKDIR /usr/src/app
-
+	vim \
+	&& apk update && apk add tzdata \
+	&& ls -l /usr/share/zoneinfo/Asia/
 #COPY requirements.txt \
 #	 Dockerfile \
 #	 ./
@@ -33,4 +34,4 @@ WORKDIR /usr/src/app
 #	&& apk del .build-deps \
 #	&& chmod 777 /usr/local/bin/kubectl* \
 #	&& ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl 
-#	#&& cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime
+	&& cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
