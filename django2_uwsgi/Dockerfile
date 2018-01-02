@@ -24,15 +24,13 @@ RUN apk add --no-cache --virtual .build-deps \
 		freetds-dev freetds  \
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
-	&& pip install uwsgi && \
+	&& pip install uwsgi \
 	&& set -ex;\
 		find /usr/local -depth \
 		\( \
 			\( -type d -a \( -name test -o -name tests \) \) \
 			-o \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
-		\) -exec rm -rf '{}' +; \
-		rm requirements.txt \
 	&& apk del .build-deps \
 	&& chmod 777 /usr/local/bin/kubectl* \
 	&& ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl \
