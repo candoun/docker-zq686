@@ -8,7 +8,6 @@ RUN apk add --no-cache \
     curl \
 	wget \
 	vim \
-	&& apk update && apk add tzdata \
 	&& cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 	
 COPY requirements.txt \
@@ -25,6 +24,7 @@ RUN apk add --no-cache --virtual .build-deps \
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& pip install uwsgi \
+	&& apk update && apk add tzdata \
 	&& set -ex;\
 		find /usr/local -depth \
 		\( \
