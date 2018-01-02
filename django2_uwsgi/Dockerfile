@@ -6,7 +6,7 @@ RUN apk add --no-cache \
     curl \
 	wget \
 	vim
-RUN apk add tzdata 
+RUN apk update && apk add tzdata tzdata 
 WORKDIR /usr/src/app
 
 #COPY requirements.txt \
