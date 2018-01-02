@@ -9,7 +9,8 @@ RUN apk add --no-cache \
 	wget \
 	vim \
 	&& apk update && apk add tzdata \
-	&& ls -l /usr/share/zoneinfo/Asia/
+	&& ls -l /usr/share/zoneinfo/Asia/ \
+	&& cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 #COPY requirements.txt \
 #	 Dockerfile \
 #	 ./
@@ -34,4 +35,3 @@ RUN apk add --no-cache \
 #	&& apk del .build-deps \
 #	&& chmod 777 /usr/local/bin/kubectl* \
 #	&& ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl 
-	&& cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
