@@ -7,8 +7,7 @@ WORKDIR /usr/src/app
 RUN apk add --no-cache \
     curl \
 	wget \
-	vim  \
-	uwsgi
+	vim
 #	&& apk update && apk add tzdata \
 #	&& cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 	
@@ -23,6 +22,8 @@ COPY kubectl1.7.0 \
 RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
 		freetds-dev freetds  \
+		linux-headers musl-dev \
+		uwsgi \
 	&& pip install Cython \
 	&& pip install --upgrade --no-cache-dir -r requirements.txt \
 	&& set -ex;\
