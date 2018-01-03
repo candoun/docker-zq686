@@ -21,7 +21,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		uwsgi \
 		curl \
 		wget \
-		vim
+		vim \
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
