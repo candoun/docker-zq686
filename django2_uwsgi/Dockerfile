@@ -16,10 +16,13 @@ RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
 		freetds-dev freetds  \
 		tzdata \
+		linux-headers musl-dev \
+		uwsgi \
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
 		find /usr/local -depth \
+		\( \
 		\( \
 			\( -type d -a \( -name test -o -name tests \) \) \
 			-o \
