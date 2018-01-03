@@ -14,7 +14,7 @@ COPY kubectl1.7.0 \
 
 RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
-		freetds-dev freetds  \
+		freetds-dev freetds git \
 		linux-headers musl-dev \
 	&& apk add --no-cache \
 		uwsgi \
@@ -23,6 +23,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		vim \
 		tzdata \
 	&& pip install Cython  \
+	&& pip install git+https://github.com/pymssql/pymssql.git@3bc299936fe2d35196dd4c9ebc8a22777f0c97e6 \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
 		find /usr/local -depth \
@@ -34,5 +35,5 @@ RUN apk add --no-cache --virtual .build-deps \
 		\) -exec rm -rf '{}' +; \
 		rm requirements.txt \
 	&& apk del .build-deps \
-	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl 
+	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl  
 	#&& cp -r -f /usr/share/zoneinfo/Hongkong 
