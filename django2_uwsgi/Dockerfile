@@ -17,7 +17,11 @@ RUN apk add --no-cache --virtual .build-deps \
 		freetds-dev freetds  \
 		tzdata \
 		linux-headers musl-dev \
+	&& apk add --no-cache \
 		uwsgi \
+		curl \
+		wget \
+		vim
 	&& pip install Cython  \
 	&& pip install -r requirements.txt \
 	&& set -ex;\
