@@ -17,7 +17,6 @@ RUN apk add --no-cache --virtual .build-deps \
 		git \
 		linux-headers musl-dev \
 	&& apk add --no-cache \
-		uwsgi \
 		curl \
 		wget \
 		vim \
