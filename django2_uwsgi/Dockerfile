@@ -22,7 +22,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		wget \
 		vim \
 		tzdata \
-		freetds-dev freetds libfreetds \
+		freetds-dev freetds \
 	&& pip install Cython  \
 	&& pip install git+https://github.com/pymssql/pymssql.git@3bc299936fe2d35196dd4c9ebc8a22777f0c97e6 \
 	&& pip install -r requirements.txt \
