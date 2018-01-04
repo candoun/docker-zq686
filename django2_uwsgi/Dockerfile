@@ -14,7 +14,7 @@ COPY kubectl1.7.0 \
 
 RUN apk add --no-cache --virtual .build-deps \
 		py-pip postgresql-dev gcc g++ mariadb-dev \
-		freetds-dev freetds git \
+		git \
 		linux-headers musl-dev \
 	&& apk add --no-cache \
 		uwsgi \
@@ -22,6 +22,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		wget \
 		vim \
 		tzdata \
+		freetds-dev freetds libfreetds \
 	&& pip install Cython  \
 	&& pip install git+https://github.com/pymssql/pymssql.git@3bc299936fe2d35196dd4c9ebc8a22777f0c97e6 \
 	&& pip install -r requirements.txt \
