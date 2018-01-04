@@ -25,6 +25,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		tzdata \
 		freetds-dev freetds \
 		mariadb-dev \
+	&& cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& pip install Cython  \
 	&& pip install git+https://github.com/pymssql/pymssql.git@3bc299936fe2d35196dd4c9ebc8a22777f0c97e6 \
 	&& pip install -r requirements.txt \
@@ -35,8 +36,7 @@ RUN apk add --no-cache --virtual .build-deps \
 			-o \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' +; \
-		cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
-		&& rm -rf /usr/share/zoneinfo/ \
+		rm -rf /usr/share/zoneinfo/ \
 	&& apk del .build-deps \
 	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl \
 
