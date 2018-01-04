@@ -35,7 +35,8 @@ RUN apk add --no-cache --virtual .build-deps \
 			-o \
 			\( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
 		\) -exec rm -rf '{}' +; \
-		rm -rf /usr/share/zoneinfo/ 
+		cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+		&& rm -rf /usr/share/zoneinfo/ \
 	&& apk del .build-deps \
 	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl \
-	&& cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime 
+
