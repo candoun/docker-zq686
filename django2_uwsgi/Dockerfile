@@ -35,5 +35,5 @@ RUN apk add --no-cache --virtual .build-deps \
 		rm requirements.txt \
 	&& apk del .build-deps \
 	&& chmod 777 /usr/local/bin/kubectl* && ln -s /usr/local/bin/kubectl1.7.0  /usr/local/bin/kubectl \
-	&& cp -r -f /usr/share/zoneinfo/Hongkong \
+	&& cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime \
 	&& rm -rf /usr/share/zoneinfo/
