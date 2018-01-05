@@ -22,7 +22,6 @@ RUN apk add --no-cache --virtual .build-deps \
 		vim \
 		bash \
 		tzdata \
-		telnet \
 		freetds-dev freetds \
 		mariadb-dev \
 		postgresql-dev \
