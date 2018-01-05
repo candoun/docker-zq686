@@ -15,7 +15,6 @@ COPY kubectl1.7.0 \
 RUN apk add --no-cache --virtual .build-deps \
 		py-pip gcc g++ \
 		git \
-		linux-headers musl-dev \
 	&& apk add --no-cache \
 		curl \
 		wget \
@@ -27,6 +26,8 @@ RUN apk add --no-cache --virtual .build-deps \
 		postgresql-dev \
 		pcre \
 		pcre-dev \
+		linux-headers musl-dev \
+		python-dev \
 	&& cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& pip install Cython  \
 	&& pip install git+https://github.com/pymssql/pymssql.git@3bc299936fe2d35196dd4c9ebc8a22777f0c97e6 \
