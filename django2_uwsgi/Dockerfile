@@ -1,5 +1,5 @@
 FROM python:3.6.4-alpine3.6
-
+# 20180105
 MAINTAINER ZZUWHJ
 
 WORKDIR /usr/src/app
@@ -22,9 +22,12 @@ RUN apk add --no-cache --virtual .build-deps \
 		vim \
 		bash \
 		tzdata \
+		telnet \
 		freetds-dev freetds \
 		mariadb-dev \
 		postgresql-dev \
+		pcre \
+		pcre-dev \
 	&& cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& pip install Cython  \
 	&& pip install git+https://github.com/pymssql/pymssql.git@3bc299936fe2d35196dd4c9ebc8a22777f0c97e6 \
