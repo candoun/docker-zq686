@@ -31,7 +31,7 @@ ENV ANT_VERSION 1.10.3
 ENV ANT_HOME $HOME/apache-ant-${ANT_VERSION}/
 RUN wget -q https://mirrors.tuna.tsinghua.edu.cn/apache//ant/binaries/apache-ant-${ANT_VERSION}-bin.tar.gz && \
     tar -xzf apache-ant-${ANT_VERSION}-bin.tar.gz && \
-    mv apache-ant-${ANT_VERSION} ${ANT_HOME} && \
+    mv apache-ant-${ANT_VERSION} $HOME && \
     rm apache-ant-${ANT_VERSION}-bin.tar.gz
 ENV PATH ${PATH}:${ANT_HOME}/bin
 
