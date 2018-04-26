@@ -34,8 +34,10 @@ RUN wget -q https://mirrors.tuna.tsinghua.edu.cn/apache//ant/binaries/apache-ant
     mv apache-ant-${ANT_VERSION} $HOME && \
     rm apache-ant-${ANT_VERSION}-bin.tar.gz && \
 	wget -q https://excellmedia.dl.sourceforge.net/project/ant-contrib/ant-contrib/ant-contrib-0.6/ant-contrib-0.6-bin.tar.gz && \
-	tar -xzf ant-contrib-0.6-bin.tar.gz && \
-	mv lib/ant-contrib-0.6.jar $HOME/apache-ant-${ANT_VERSION}/lib/ant-contrib-0.6.jar
+	mkdir ant-contrib && \
+	tar -xzf ant-contrib-0.6-bin.tar.gz -C ant-contrib && \
+	mv ant-contrib/lib/ant-contrib-0.6.jar $HOME/apache-ant-${ANT_VERSION}/lib/ant-contrib-0.6.jar && \
+	rm -rf ant-contrib
 ENV PATH ${PATH}:${ANT_HOME}/bin
 
 USER jenkins
