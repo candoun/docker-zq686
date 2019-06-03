@@ -25,11 +25,11 @@ WORKDIR /home/jenkins
 
 
 
+########## add  maven
 
-
-ARG MAVEN_VERSION=3.5.4
+ARG MAVEN_VERSION=3.6.1
 ARG USER_HOME_DIR=$HOME
-ARG SHA=707b1f6e390a65bde4af4cdaf2a24d45fc19a6ded00fff02e91626e3e42ceaff
+ARG SHA=b4880fb7a3d81edd190a029440cdf17f308621af68475a4fe976296e71ff4a4b546dd6d8a58aaafba334d309cc11e638c52808a4b0e818fc0fd544226d952544
 ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
@@ -43,7 +43,7 @@ ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 COPY settings.xml /usr/share/maven/conf
 
-# add golang 
+########## add golang 
 RUN apk add --no-cache \
 		ca-certificates
 
