@@ -42,7 +42,7 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 RUN chown -R jenkins.jenkins /usr/share/maven/conf
-#COPY settings /usr/share/maven/conf
+#COPY settings.xml /usr/share/maven/conf
 
 
 ########## add golang 
