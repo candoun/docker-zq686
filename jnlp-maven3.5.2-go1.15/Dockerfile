@@ -59,11 +59,11 @@ RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 ENV GOLANG_VERSION 1.11.5
 
 RUN set -eux; \
-	apk add --no-cache --virtual  \
+	apk add --no-cache --virtual .build-deps \
 		bash \
+		gcc \
 		musl-dev \
 		openssl \
-		gcc \
 		go \
 	; \
 	export \
