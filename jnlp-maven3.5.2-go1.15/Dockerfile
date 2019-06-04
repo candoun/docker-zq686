@@ -49,6 +49,7 @@ RUN chown -R jenkins.jenkins /usr/share/maven/conf
 
 
 RUN apk add --no-cache \
+		gcc \
 		ca-certificates
 
 # set up nsswitch.conf for Go's "netgo" implementation
@@ -61,7 +62,6 @@ ENV GOLANG_VERSION 1.11.5
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
 		bash \
-		gcc \
 		musl-dev \
 		openssl \
 		go \
@@ -107,6 +107,7 @@ RUN set -eux; \
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
 
-RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH" && rm  -rf /home/jenkins/.cache
+
 
 USER jenkins
