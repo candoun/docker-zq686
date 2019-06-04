@@ -49,7 +49,6 @@ RUN chown -R jenkins.jenkins /usr/share/maven/conf
 
 
 RUN apk add --no-cache \
-		gcc \
 		ca-certificates
 
 # set up nsswitch.conf for Go's "netgo" implementation
@@ -60,10 +59,11 @@ RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 ENV GOLANG_VERSION 1.11.5
 
 RUN set -eux; \
-	apk add --no-cache --virtual .build-deps \
+	apk add --no-cache --virtual  \
 		bash \
 		musl-dev \
 		openssl \
+		gcc \
 		go \
 	; \
 	export \
@@ -99,7 +99,7 @@ RUN set -eux; \
 # https://github.com/golang/build/blob/e3fe1605c30f6a3fd136b561569933312ede8782/cmd/release/releaselet.go#L56
 		/usr/local/go/pkg/obj \
 	; \
-	apk del .build-deps; \
+	# apk del .build-deps; \
 	\
 	export PATH="/usr/local/go/bin:$PATH"; \
 	go version
