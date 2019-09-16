@@ -6,7 +6,9 @@ ARG RESTY_IMAGE_TAG="3.9"
 
 FROM ${RESTY_IMAGE_BASE}:${RESTY_IMAGE_TAG}
 
-LABEL maintainer="Evan Wies <evan@neomantra.net>"
+LABEL maintainer="zzuwhj@126.com"
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # Docker Build Arguments
 ARG RESTY_IMAGE_BASE="alpine"
@@ -97,9 +99,9 @@ RUN apk add --no-cache --virtual .build-deps \
         libgcc \
         libxslt \
         zlib \
-        ${RESTY_ADD_PACKAGE_RUNDEPS} \
         wget \
         vim \
+        ${RESTY_ADD_PACKAGE_RUNDEPS} \
     && cd /tmp \
     && if [ -n "${RESTY_EVAL_PRE_CONFIGURE}" ]; then eval $(echo ${RESTY_EVAL_PRE_CONFIGURE}); fi \
     && cd /tmp \
@@ -164,3 +166,5 @@ CMD ["/usr/local/openresty/bin/openresty", "-g", "daemon off;"]
 # Use SIGQUIT instead of default SIGTERM to cleanly drain requests
 # See https://github.com/openresty/docker-openresty/blob/master/README.md#tips--pitfalls
 STOPSIGNAL SIGQUIT
+
+
