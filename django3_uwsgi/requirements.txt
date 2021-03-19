@@ -7,7 +7,7 @@ cx-Oracle==6.1
 Django==2.0
 django-redis==4.8.0
 django-tinymce==2.7.0
-djangorestframework==3.7.3
+djangorestframework==3.11.2
 gunicorn==19.6.0
 idna==2.6
 IPy==0.83
