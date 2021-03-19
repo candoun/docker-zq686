@@ -21,7 +21,7 @@ djangorestframework==3.5.4
 flower==0.9.1
 futures==3.1.1
 IPy==0.81
-Jinja2==2.7.1
+Jinja2==2.11.3
 kombu==3.0.29
 MarkupSafe==0.22
 meld3==1.0.2
