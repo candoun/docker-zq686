@@ -31,7 +31,7 @@ pip2pi==0.6.8
 PyMySQL==0.7.6
 python-jenkins==0.4.8
 pytz==2015.7
-PyYAML==3.12
+PyYAML==5.4
 redis==2.10.5
 requests==2.7.0
 setuptools-git==1.1
