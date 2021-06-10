@@ -13,7 +13,7 @@ celery==3.1.19
 celery-with-redis==3.0
 certifi==2015.9.6
 crypto==1.4.1
-Django==1.8.4
+Django==2.2.24
 django-celery==3.1.17
 django-grappelli==2.7.3
 django-tinymce==2.2.0
